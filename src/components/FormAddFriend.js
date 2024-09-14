@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./Button";
+import { nanoid } from "nanoid";
 
 export default function FormAddFriend({ onAddFriend }) {
   const [name, setName] = useState("");
@@ -10,7 +11,15 @@ export default function FormAddFriend({ onAddFriend }) {
 
     if (!name || !image) return;
 
-    const id = crypto.randomUUID();
+    // const id = crypto.randomUUID();
+    // console.log(id);
+
+    // const random = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
+    // console.log(random);
+
+    const id = nanoid();
+    console.log(id);
+
     const newFriend = {
       id,
       name,

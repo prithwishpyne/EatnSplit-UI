@@ -7,6 +7,8 @@ import FormSplitBill from "./FormSplitBill";
 import NavBar from "./NavBar";
 import Description from "./Description";
 
+import * as utils from "../utils.js";
+
 // const initialFriends = [
 //   {
 //     id: 118836,
@@ -38,7 +40,9 @@ export default function App() {
   const headers = { "Content-Type": "application/json" };
 
   async function UpdateData() {
-    const res = await axios.get("http://localhost:1200/v1/getAllUserDetails");
+    const res = await axios.get(
+      `http://${utils.URL}:${utils.PORT}/v1/getAllUserDetails`
+    );
     console.log(res);
     setFriends(res.data.message);
   }
@@ -47,7 +51,7 @@ export default function App() {
     console.log(friend);
     try {
       axios
-        .post("http://localhost:1200/v1/addUser", friend, {
+        .post(`http://${utils.URL}:${utils.PORT}/v1/addUser`, friend, {
           headers: headers,
         })
         .then((res) => {
@@ -65,7 +69,7 @@ export default function App() {
     try {
       axios
         .post(
-          `http://localhost:1200/v1/editBalance/${id}`,
+          `http://${utils.URL}:${utils.PORT}/v1/editBalance/${id}`,
           { balance: balance },
           {
             headers: headers,
